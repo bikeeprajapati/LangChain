@@ -30,3 +30,6 @@ streamlit
 
 # Data Validation
 pydantic
+
+langchain-community
+langchain-core
