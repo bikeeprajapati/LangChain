@@ -1,4 +1,4 @@
-from langchain_experimental.text_splitters import SemanticChunker
+from langchain_experimental.text_splitter import SemanticChunker
 from langchain_huggingface import HuggingFaceEmbeddings
 from dotenv import load_dotenv
 
@@ -10,8 +10,7 @@ embeddings = HuggingFaceEmbeddings(
 
 text_splitter = SemanticChunker(
     embeddings,
-    breakpoint_threshold_type="standard_deviation",
-    breakpoint_threshold=1.0,
+    breakpoint_threshold_type="standard_deviation"
 )
 
 sample_text = """
@@ -22,3 +21,4 @@ And you can easily integrate it with other tools and data sources.
 
 chunks = text_splitter.split_text(sample_text)
 print(chunks)
+
