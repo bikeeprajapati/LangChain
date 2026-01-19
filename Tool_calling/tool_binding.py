@@ -23,5 +23,21 @@ model = ChatHuggingFace(llm=llm)
 
 llm_with_tools = model.bind_tools([multiply])
 
-response = llm_with_tools.invoke("What is 3 multiplied by 4?")
-print(response)
+query = HumanMessage(content="What is 3 multiplied by 4?")
+messages = [query]
+
+#Tool Calling via the language model
+
+response = llm_with_tools.invoke(messages)
+messages.append(response)
+print(response.tool_calls[0]["args"])
+
+#Tool execution
+tool_result = multiply.invoke(response.tool_calls[0])
+messages.append(tool_result)
+
+print("Tool result:", tool_result)
+print(messages)
+
+final_response = llm_with_tools.invoke(messages)
+print("Final response from LLM:", final_response.content)
