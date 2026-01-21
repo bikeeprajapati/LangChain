@@ -74,7 +74,7 @@ agent_executor = create_agent(
 
 query = (
     "Find the capital of Nepal, "
-    "then find its current weather condition."
+    "how much is the probability for raining in next 2 hours."
 )
 
 response = agent_executor.invoke({"messages": [("user", query)]})
